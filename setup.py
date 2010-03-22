@@ -14,27 +14,37 @@ from distutils.core import setup
 import shutil, sys
 
 
-upload_py_dir = "../../static/"
+def get_svn_path_revision(path):
+    """return latest modification revision of a path inside svn
 
-def get_upload_py_version():
-    """return latest revision number of upload.py"""
-    with open(upload_py_dir + ".svn/entries") as f:
+       :raise:  EnvironmentError if SVN working copy format is unknown
+       :return: int
+    """
+    from os.path import basename, dirname, join, isdir
+
+    if isdir(path):
+        entries_path = join(path, ".svn", "entries")
+    else:
+        entries_path = join(dirname(path), ".svn", "entries")
+    with open(entries_path) as f:
         entries = [l.strip() for l in f.readlines()]
 
     # check known working copy version
     # it seems to be entries[0]
     if entries[0] != '10':
-        sys.exit("Error: Unknown SVN working copy version")
+        raise EnvironmentError(10, "Unknown SVN working copy format")
 
-    # check upload.py modification revision
-    idx = entries.index("upload.py")
-    entry = entries[idx:idx+33]
-    rev = int(entry[9])
-    return rev
+    # check entry modification revision
+    if isdir(path):
+        return int(entries[10])
+    else:
+        idx = entries.index(basename(path))
+        entry = entries[idx:idx+33]
+        return int(entry[9])
 
-
-shutil.copyfile(upload_py_dir + "upload.py", "review.py")
-version = get_upload_py_version()
+upload_py_path = "../../static/upload.py"
+version = get_svn_path_revision(upload_py_path)
+shutil.copyfile(upload_py_path, "review.py")
 description = """
 Usage::
 
