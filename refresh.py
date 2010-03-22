@@ -39,3 +39,11 @@ upload_py_path = "../../static/upload.py"
 shutil.copyfile(upload_py_path, "review.py")
 # replace version/revision in setup.py
 version = get_svn_path_revision(upload_py_path)
+with open("setup.py") as fr:
+    setup_contents = fr.readlines()
+with open("setup.py","wb") as fw:
+    for line in setup_contents:
+        vpos = line.find("version='r")
+        if vpos != -1:
+            line = line[:vpos] + "version='r%s',\n" % version
+        fw.write(line)

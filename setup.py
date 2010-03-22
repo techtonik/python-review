@@ -13,7 +13,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='r100',
+    version='r515',
     author='Google Inc. & Co.',
 
     description='rietveld code review upload script',
