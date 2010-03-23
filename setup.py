@@ -15,9 +15,10 @@ setup(
     name='review',
     version='r515',
     author='Google Inc. & Co.',
+    url='http://codereview.appspot.com/',
 
     description='rietveld code review upload script',
-    long_description=description = """
+    long_description="""
 Usage::
 
     python -m review [options]
