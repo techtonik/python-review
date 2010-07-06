@@ -35,7 +35,7 @@ def get_svn_path_revision(path):
         return int(entry[9])
 
 # copy upload.py to review.py
-upload_py_path = "../../static/upload.py"
+upload_py_path = "../../upload.py"
 shutil.copyfile(upload_py_path, "review.py")
 # replace version/revision in setup.py
 version = get_svn_path_revision(upload_py_path)

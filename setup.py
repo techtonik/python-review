@@ -13,7 +13,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='r515',
+    version='r537',
     author='Google Inc. & Co.',
     url='http://codereview.appspot.com/',
 
@@ -22,6 +22,13 @@ setup(
 Usage::
 
     python -m review [options]
+
+Changelog::
+
+  r537 - Optionally use the 'keyring' module to avoid password prompts
+  r535 - Improve captcha message for Google Apps accounts (Issue 1690047)
+  r534 - Convert Unicode values to ASCII (issue 1590044)
+  r531 - Add account type flag to upload.py (issue195)
 
 * Home Page:   http://codereview.appspot.com/
 * Development: http://code.google.com/p/rietveld/
