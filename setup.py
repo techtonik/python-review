@@ -23,7 +23,7 @@ Usage::
 
     python -m review [options]
 
-Changelog::
+Changes::
 
   r537 - Optionally use the 'keyring' module to avoid password prompts
   r535 - Improve captcha message for Google Apps accounts (Issue 1690047)
