@@ -13,7 +13,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='r537',
+    version='r554',
     author='Google Inc. & Co.',
     url='http://codereview.appspot.com/',
 
