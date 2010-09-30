@@ -34,16 +34,31 @@ def get_svn_path_revision(path):
         entry = entries[idx:idx+33]
         return int(entry[9])
 
-# copy upload.py to review.py
+print "copying ../upload.py to review.py"
 upload_py_path = "../upload.py"
 shutil.copyfile(upload_py_path, "review.py")
-# replace version/revision in setup.py
+
+print "updating version and history in setup.py"
 version = get_svn_path_revision(upload_py_path)
 with open("setup.py") as fr:
     setup_contents = fr.readlines()
+with open("HISTORY") as fh:
+    history_content = fh.read()
 with open("setup.py","wb") as fw:
-    for line in setup_contents:
+    setup_iter = iter(setup_contents)
+    for line in setup_iter:
+        # injecting revision number
         vpos = line.find("version='r")
         if vpos != -1:
             line = line[:vpos] + "version='r%s',\n" % version
         fw.write(line)
+        
+        # injecting HISTORY
+        if line.find("Changes::") != -1:
+            fw.write("\n")
+            fw.write(history_content)
+            fw.write("\n")
+            while line[0] != '*':
+                line = setup_iter.next()
+            fw.write(line)
+print "done."
