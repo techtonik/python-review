@@ -15,9 +15,10 @@ setup(
     name='review',
     version='r554',
     author='Google Inc. & Co.',
+    author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
 
-    description='rietveld code review upload script',
+    description='upload script for "Rietveld" code review tool',
     long_description="""
 Usage::
 
@@ -33,6 +34,7 @@ Changes::
 * Home Page:   http://codereview.appspot.com/
 * Development: http://code.google.com/p/rietveld/
 * Discussions: http://groups.google.com/group/codereview-discuss/
+* PyPI Code:   http://bitbucket.org/techtonik/pypi-rietveld/
 """,
     license='Apache 2.0',
     classifiers=[
