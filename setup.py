@@ -13,7 +13,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='r579',
+    version='r588',
     author='Google Inc. & Co.',
     author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
@@ -25,6 +25,9 @@ Usage::
     python -m review [options]
 
 Changes::
+
+  r588 - Support "http://" prefix when detecting localhost usage (2736045)
+  r585 - Fix wrong base revision for Python repository (issue #239, 2442042)
 
   r579 - No depth restriction on 'hg diff' by default (issue #234, 2292041)
   r566 - Remove "default" from help text for --verbose (2048041)
