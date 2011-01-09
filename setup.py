@@ -13,7 +13,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='r588',
+    version='r640',
     author='Google Inc. & Co.',
     author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
@@ -25,6 +25,10 @@ Usage::
     python -m review [options]
 
 Changes::
+
+  r640 - Add perforce support, by Alex McCarthy (2635043)
+  r632 - Support for Rietveld instances moved by HTTP 301 (3227041)
+  r590 - Look at the old filename only for add with Mercurial (2951041)
 
   r588 - Support "http://" prefix when detecting localhost usage (2736045)
   r585 - Fix wrong base revision for Python repository (issue #239, 2442042)
