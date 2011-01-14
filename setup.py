@@ -50,7 +50,7 @@ Changes::
 * Home Page:   http://codereview.appspot.com/
 * Development: http://code.google.com/p/rietveld/
 * Discussions: http://groups.google.com/group/codereview-discuss/
-* PyPI Code:   http://bitbucket.org/techtonik/pypi-rietveld/
+* PyPI Code:   http://bitbucket.org/techtonik/python-review/
 """,
     license='Apache 2.0',
     classifiers=[
