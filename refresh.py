@@ -2,6 +2,7 @@
 This script copies latest upload.py to review.py and refreshes
 version in setup.py to upload `review` package to PyPI.
 """
+from __future__ import with_statement
 
 import shutil
 import os,sys
