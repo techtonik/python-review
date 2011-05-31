@@ -8,6 +8,9 @@ import shutil
 import os,sys
 
 
+UPLOAD_PY_PATH = "../upload.py"
+REPO_VIEW = "http://code.google.com/p/rietveld/source/detail?r="
+
 def get_svn_path_revision(path):
     """return latest modification revision of a path inside svn
 
@@ -36,16 +39,29 @@ def get_svn_path_revision(path):
         entry = entries[idx:idx+33]
         return int(entry[9])
 
+def history2rst(history):
+    import re
 
-upload_py_path = "../upload.py"
-if not os.path.exists(upload_py_path):
+    # linkify revisions
+    revision = re.compile(r'^(r\d{3,4}) -', re.M)
+    anchors = revision.findall(history) # ['r749', 'r745', ...]
+    history = revision.sub(r'  | \1_ -', history)
+    history += "\n"
+    history += "\n".join(
+      ['.. _%s: %s%s' % (x, REPO_VIEW, x[1:]) for x in anchors]
+    )
+    history += "\n"
+    return history
+
+
+if not os.path.exists(UPLOAD_PY_PATH):
   sys.exit("error: upload.py is not found in parent dir")
 
 print "copying ../upload.py to review.py"
-shutil.copyfile(upload_py_path, "review.py")
+shutil.copyfile(UPLOAD_PY_PATH, "review.py")
 
 print "updating version and history in setup.py"
-version = get_svn_path_revision(upload_py_path)
+version = get_svn_path_revision(UPLOAD_PY_PATH)
 with open("setup.py") as fr:
     setup_contents = fr.readlines()
 with open("HISTORY") as fh:
@@ -62,7 +78,7 @@ with open("setup.py","wb") as fw:
         # injecting HISTORY
         if line.find("Changes::") != -1:
             fw.write("\n")
-            fw.write(history_content)
+            fw.write(history2rst(history_content))
             fw.write("\n")
             while line[0] != '*':
                 line = setup_iter.next()
