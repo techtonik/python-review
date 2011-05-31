@@ -4,6 +4,7 @@ version in setup.py to upload `review` package to PyPI.
 """
 
 import shutil
+import os,sys
 
 
 def get_svn_path_revision(path):
@@ -34,8 +35,12 @@ def get_svn_path_revision(path):
         entry = entries[idx:idx+33]
         return int(entry[9])
 
-print "copying ../upload.py to review.py"
+
 upload_py_path = "../upload.py"
+if not os.path.exists(upload_py_path):
+  sys.exit("error: upload.py is not found in parent dir")
+
+print "copying ../upload.py to review.py"
 shutil.copyfile(upload_py_path, "review.py")
 
 print "updating version and history in setup.py"
