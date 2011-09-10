@@ -19,7 +19,7 @@ setup(
     author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
 
-    description='upload script for "Rietveld" code review tool',
+    description='upload script for Rietveld code review tool',
     long_description="""
 Usage::
 

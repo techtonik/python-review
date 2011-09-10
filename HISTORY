@@ -1,7 +1,7 @@
-On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
-As a result of ommitting some branches, revision number decreased.
+ On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
+ As a result of ommitting some branches, revision number decreased.
 
-695:ba3f47e4a614 - 2011-09-07
+ 695:ba3f47e4a614 - 2011-09-07
 
  - Hide perforce options unless explicitly requested (4968071)
  - --send_patch option to attach diff instead of inline, by Kaelyn (4881041)
