@@ -11,33 +11,25 @@ import os,sys
 UPLOAD_PY_PATH = "../upload.py"
 REPO_VIEW = "http://code.google.com/p/rietveld/source/detail?r="
 
-def get_svn_path_revision(path):
-    """return latest modification revision of a path inside svn
+def get_hg_repo_revision(path):
+    """return current revision of a repository at path
 
-       :raise:  EnvironmentError if SVN working copy format is unknown
-       :return: int
+       :raise:  EnvironmentError if `hg` isn't found or path invalid
+       :return: string like 'num:hash'
     """
-    from os.path import basename, dirname, join, isdir
-
-    if isdir(path):
-        entries_path = join(path, ".svn", "entries")
-    else:
-        entries_path = join(dirname(path), ".svn", "entries")
-    with open(entries_path) as f:
-        entries = [l.strip() for l in f.readlines()]
-
-    # check known working copy version
-    # it seems to be entries[0]
-    if entries[0] != '10':
-        raise EnvironmentError(10, "Unknown SVN working copy format")
-
-    # check entry modification revision
-    if isdir(path):
-        return int(entries[10])
-    else:
-        idx = entries.index(basename(path))
-        entry = entries[idx:idx+33]
-        return int(entry[9])
+    from subprocess import Popen, PIPE
+    if os.path.isfile(path):
+        path = os.path.dirname(path)
+    try:
+        hgprocess = Popen('hg id -ni "%s"' % path, shell=True,
+                          stdout=PIPE, stderr=PIPE)
+        output = hgprocess.communicate()
+        if hgprocess.returncode != 0:
+            raise EnvironmentError(hgprocess.returncode, "'hg' returned error")
+        hgid, hgnum = output[0].strip().split()
+        return hgnum + ':' + hgid
+    except OSError:
+        raise EnvironmentError(2, "'hg' command not found")
 
 def history2rst(history):
     import re
@@ -61,18 +53,23 @@ print "copying ../upload.py to review.py"
 shutil.copyfile(UPLOAD_PY_PATH, "review.py")
 
 print "updating version and history in setup.py"
-version = get_svn_path_revision(UPLOAD_PY_PATH)
+revision = get_hg_repo_revision(UPLOAD_PY_PATH)
+version = revision.split(':')[0].strip('+')
+# after conversion to Mercurial revision number decreased, and the
+# latest released r749 corresponds to 655 num in Hg
 with open("setup.py") as fr:
     setup_contents = fr.readlines()
 with open("HISTORY") as fh:
     history_content = fh.read()
 with open("setup.py","wb") as fw:
+    foundver = False
     setup_iter = iter(setup_contents)
     for line in setup_iter:
         # injecting revision number
         vpos = line.find("version='r")
         if vpos != -1:
             line = line[:vpos] + "version='r%s',\n" % version
+            foundver = True
         fw.write(line)
         
         # injecting HISTORY
@@ -83,4 +80,6 @@ with open("setup.py","wb") as fw:
             while line[0] != '*':
                 line = setup_iter.next()
             fw.write(line)
+    if not foundver:
+        print "warning: can't find version string in setup.py"
 print "done."
