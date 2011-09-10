@@ -1,12 +1,20 @@
-r749 - Fix Ruby and PHP types upload, by Saket Kumar Choudhary (issue #307)
+On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
+As a result of ommitting some branches, revision number decreased.
+
+695:ba3f47e4a614 - 2011-09-07
+ - Hide perforce options unless explicitly requested (4968071)
+ - --send_patch option to attach diff instead of inline, by Kaelyn (4881041)
+ - Ignore git submodules when generating diffs (issue #324, 4822044)
+ - Escape @ in filenames when running SVN commands (issue #322, 4745041)
+ - Remove MIMETYPES whitelist as a way to detect if file is binary (4641078)
+
+Before moving to Mercurial:
 r745 - Better handling of login errors, patch by proppy@goog (#289, 4547067)
 r730 - Accept 'cvs diff' return1 either 0 or 1, by Matthew Dempsky (4435076)
 r703 - Make RealMain() suitable for API calls (4439056)
 r700 - -r N:M failure on new directories, by Arkadi Shishlov (#187, 4368045)
 r687 - Fix upload.py typos, by leeight (#286, 4277081)
 r680 - Add CVS backend, by Matthew Dempsky 4280044)
-r663 - MIMETYPE changes for svn, by Chad Killingsworth (4170042)
-r660 - Fix JSON files mimetypes to be text, by levin1 (4133046)
 r654 - Preserve username in Base URL until server upload (#266, 4071042)
 
 r640 - Add perforce support, by Alex McCarthy (2635043)
@@ -22,7 +30,6 @@ r561 - Locate subversion config on Windows (1983049)
 
 r554 - Fix --rev option (git backend) when argument has a colon (issue #211)
 r552 - Fix exception while trying to output an error (3109015)
-r546 - Add application/x-sh to whitelist of uploadable files, by Derek Schuff
 r541 - Fix variable usage when getting/setting keyring password (1900041)
 r538 - Fetch base file from SVN url if local history is missing (issue #208)
 r537 - Optionally use the 'keyring' module to avoid password prompts

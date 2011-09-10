@@ -14,7 +14,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='r749',
+    version='695',
     author='Google Inc. & Co.',
     author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
