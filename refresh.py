@@ -67,9 +67,9 @@ with open("setup.py","wb") as fw:
     setup_iter = iter(setup_contents)
     for line in setup_iter:
         # injecting revision number
-        vpos = line.find("version='r")
+        vpos = line.find("version='")
         if vpos != -1:
-            line = line[:vpos] + "version='r%s',\n" % version
+            line = line[:vpos] + "version='%s',\n" % version
             foundver = True
         fw.write(line)
         
