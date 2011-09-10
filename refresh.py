@@ -10,7 +10,7 @@ import os,sys
 
 
 UPLOAD_PY_PATH = "../upload.py"
-REPO_VIEW = "http://code.google.com/p/rietveld/source/detail?r="
+REPO_VIEW = "http://code.google.com/p/rietveld/source/list?path=/upload.py&r="
 
 def get_hg_path_revision(path):
     """return latest modification revision of a path inside hg
@@ -36,12 +36,12 @@ def history2rst(history):
     import re
 
     # linkify revisions
-    revision = re.compile(r'^(r\d{3,4}) -', re.M)
-    anchors = revision.findall(history) # ['r749', 'r745', ...]
-    history = revision.sub(r'  | \1_ -', history)
+    revision = re.compile(r'^(\d{3,4}:[0-9a-f]{12}) -', re.M)
+    anchors = revision.findall(history) # ['695:ba3f47e4a614', ...]
+    history = revision.sub(r'`\1`_ -', history)
     history += "\n"
     history += "\n".join(
-      ['.. _%s: %s%s' % (x, REPO_VIEW, x[1:]) for x in anchors]
+      ['.. _`%s`: %s%s' % (x, REPO_VIEW, x.split(':')[1]) for x in anchors]
     )
     history += "\n"
     return history
@@ -74,7 +74,7 @@ with open("setup.py","wb") as fw:
         fw.write(line)
         
         # injecting HISTORY
-        if line.find("Changes::") != -1:
+        if line.find("Changes:") != -1:
             fw.write("\n")
             fw.write(history2rst(history_content))
             fw.write("\n")
