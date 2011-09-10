@@ -12,18 +12,18 @@ import os,sys
 UPLOAD_PY_PATH = "../upload.py"
 REPO_VIEW = "http://code.google.com/p/rietveld/source/detail?r="
 
-def get_hg_repo_revision(path):
-    """return current revision of a repository at path
+def get_hg_path_revision(path):
+    """return latest modification revision of a path inside hg
 
        :raise:  EnvironmentError if `hg` isn't found or path invalid
        :return: string like 'num:hash'
     """
     from subprocess import Popen, PIPE
-    if os.path.isfile(path):
-        path = os.path.dirname(path)
     try:
-        hgprocess = Popen('hg id -ni "%s"' % path, shell=True,
-                          stdout=PIPE, stderr=PIPE)
+        hgprocess = Popen(
+            'hg log -l 1 --template "{node|short} {rev}" --cwd "%s" "%s"'
+                % (os.path.dirname(path) or '.', os.path.basename(path)),
+            shell=True, stdout=PIPE, stderr=PIPE)
         output = hgprocess.communicate()
         if hgprocess.returncode != 0:
             raise EnvironmentError(hgprocess.returncode, "'hg' returned error")
@@ -54,7 +54,7 @@ print "copying ../upload.py to review.py"
 shutil.copyfile(UPLOAD_PY_PATH, "review.py")
 
 print "updating version and history in setup.py"
-revision = get_hg_repo_revision(UPLOAD_PY_PATH)
+revision = get_hg_path_revision(UPLOAD_PY_PATH)
 version = revision.split(':')[0].strip('+')
 # after conversion to Mercurial revision number decreased, and the
 # latest released r749 corresponds to 655 num in Hg
