@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 This setup.py packages `upload.py` script from rietveld project
 as `review.py` for PyPI, so that it could be called as::
