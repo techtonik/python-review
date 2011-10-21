@@ -1,6 +1,11 @@
  On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
  As a result of ommitting some branches, revision number decreased.
 
+ 709:840f9bb917ba - 2011-09-22
+
+ - Add repository ID field to link Issue with Repository (review 5093045)
+ - More fixes to fit upload.py options in one screen (review 4962070)
+
  695:ba3f47e4a614 - 2011-09-07
 
  - Hide perforce options unless explicitly requested (4968071)
