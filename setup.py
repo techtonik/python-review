@@ -33,16 +33,16 @@ Changes:
  `801:2f5709156db2`_ - 2011-01-10  --  Options meaning changed
 
  - Subversion 1.7 support, by Jocelyn Fiat (issue #359, 5529052)
- - Command line options made intuitive (review 5476044)
+ - Command line options made intuitive (review 5476044)::
 
-  1. on first submission
-    -t, --title       issue subject
-    -m, --message     issue description
-    -F, --file <file> read description from file
-  2. on issue update
-    -t, --title       new patchset title
-    -m, --message     message to reviewers
-    -F, --file <file> read message from file
+     1. on first submission
+        -t, --title       issue subject
+        -m, --message     issue description
+        -F, --file <file> read description from file
+     2. on issue update
+        -t, --title       new patchset title
+        -m, --message     message to reviewers
+        -F, --file <file> read message from file
 
  - New upload_complete hook for async processing (review 5440044)
  - Print error messages for server errors (review 5399053) 
