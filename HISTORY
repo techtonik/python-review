@@ -1,6 +1,25 @@
  On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
  As a result of ommitting some branches, revision number decreased.
 
+ 801:2f5709156db2 - 2011-01-10  --  Options meaning changed
+
+ - Subversion 1.7 support, by Jocelyn Fiat (issue #359, 5529052)
+ - Command line options made intuitive (review 5476044)
+
+  1. on first submission
+    -t, --title       issue subject
+    -m, --message     issue description
+    -F, --file <file> read description from file
+  2. on issue update
+    -t, --title       new patchset title
+    -m, --message     message to reviewers
+    -F, --file <file> read message from file
+
+ - New upload_complete hook for async processing (review 5440044)
+ - Print error messages for server errors (review 5399053) 
+ - Fix fail when Hg is executed from subdir (issue #345, 5364065)
+ - Allow empty files to be uploaded from Git (review 5370042)
+
  709:840f9bb917ba - 2011-09-22
 
  - Add repository ID field to link Issue with Repository (review 5093045)

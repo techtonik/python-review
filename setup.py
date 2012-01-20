@@ -14,7 +14,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='709',
+    version='801',
     author='Google Inc. & Co.',
     author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
@@ -29,6 +29,25 @@ Changes:
 
  On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
  As a result of ommitting some branches, revision number decreased.
+
+ `801:2f5709156db2`_ - 2011-01-10  --  Options meaning changed
+
+ - Subversion 1.7 support, by Jocelyn Fiat (issue #359, 5529052)
+ - Command line options made intuitive (review 5476044)
+
+  1. on first submission
+    -t, --title       issue subject
+    -m, --message     issue description
+    -F, --file <file> read description from file
+  2. on issue update
+    -t, --title       new patchset title
+    -m, --message     message to reviewers
+    -F, --file <file> read message from file
+
+ - New upload_complete hook for async processing (review 5440044)
+ - Print error messages for server errors (review 5399053) 
+ - Fix fail when Hg is executed from subdir (issue #345, 5364065)
+ - Allow empty files to be uploaded from Git (review 5370042)
 
  `709:840f9bb917ba`_ - 2011-09-22
 
@@ -73,6 +92,7 @@ Before moving to Mercurial:
  | r534 - Convert Unicode values to ASCII (1590044)
  | r531 - Add account type flag to upload.py (issue #195)
 
+.. _`801:2f5709156db2`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=2f5709156db2
 .. _`709:840f9bb917ba`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=840f9bb917ba
 .. _`695:ba3f47e4a614`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=ba3f47e4a614
 
