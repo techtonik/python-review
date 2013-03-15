@@ -1,6 +1,18 @@
  On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
  As a result of ommitting some branches, revision number decreased.
 
+ 966:66d93f2615b7 - 2012-11-30
+
+ - Pass the account type through to the HttpRpcServer, by Dominic Hamon.
+ - Use git similarity option, by Robert Iannucci (6574057, 6726050)
+ - Fix Removing/updating password in keyring is not possible (#329, 6492080)
+ - Fix HTTP 403 error on python 2.7 (6490072)
+ - Fix support for renamed files, aka git mv in upload.py (#251, 4333051)
+ - Upload binary files that are not images (6221063)
+ - Add message from upload.py when updating an issue (#351, 5687062)
+ - Make sure color is not used in git diff (5619043)
+ - Default --title on --message and clamp at 100 chars (5574050)
+
  801:2f5709156db2 - 2011-01-10  --  Options meaning changed
 
  - Subversion 1.7 support, by Jocelyn Fiat (issue #359, 5529052)

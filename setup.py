@@ -14,7 +14,7 @@ from distutils.core import setup
 
 setup(
     name='review',
-    version='801',
+    version='966',
     author='Google Inc. & Co.',
     author_email='codereview-discuss@googlegroups.com',
     url='http://codereview.appspot.com/',
@@ -29,6 +29,18 @@ Changes:
 
  On August 1st of 2011 Rietveld moved from Subversion to Mercurial.
  As a result of ommitting some branches, revision number decreased.
+
+ `966:66d93f2615b7`_ - 2012-11-30
+
+ - Pass the account type through to the HttpRpcServer, by Dominic Hamon.
+ - Use git similarity option, by Robert Iannucci (6574057, 6726050)
+ - Fix Removing/updating password in keyring is not possible (#329, 6492080)
+ - Fix HTTP 403 error on python 2.7 (6490072)
+ - Fix support for renamed files, aka git mv in upload.py (#251, 4333051)
+ - Upload binary files that are not images (6221063)
+ - Add message from upload.py when updating an issue (#351, 5687062)
+ - Make sure color is not used in git diff (5619043)
+ - Default --title on --message and clamp at 100 chars (5574050)
 
  `801:2f5709156db2`_ - 2011-01-10  --  Options meaning changed
 
@@ -92,6 +104,7 @@ Before moving to Mercurial:
  | r534 - Convert Unicode values to ASCII (1590044)
  | r531 - Add account type flag to upload.py (issue #195)
 
+.. _`966:66d93f2615b7`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=66d93f2615b7
 .. _`801:2f5709156db2`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=2f5709156db2
 .. _`709:840f9bb917ba`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=840f9bb917ba
 .. _`695:ba3f47e4a614`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=ba3f47e4a614
