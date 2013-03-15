@@ -36,9 +36,9 @@ def history2rst(history):
     import re
 
     # linkify revisions
-    revision = re.compile(r'(\d{3,4}:[0-9a-f]{12}) -', re.M)
+    revision = re.compile(r'(\d{3,4}:[0-9a-f]{12})')
     anchors = revision.findall(history) # ['695:ba3f47e4a614', ...]
-    history = revision.sub(r'`\1`_ -', history)
+    history = revision.sub(r'`\1`_', history)
     history += "\n"
     history += "\n".join(
       ['.. _`%s`: %s%s' % (x, REPO_VIEW, x.split(':')[1]) for x in anchors]
