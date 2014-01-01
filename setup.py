@@ -109,10 +109,10 @@ Before moving to Mercurial:
 .. _`709:840f9bb917ba`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=840f9bb917ba
 .. _`695:ba3f47e4a614`: http://code.google.com/p/rietveld/source/list?path=/upload.py&r=ba3f47e4a614
 
-* Home Page:   http://codereview.appspot.com/
-* Development: http://code.google.com/p/rietveld/
+* Rietveld Home Page:   http://codereview.appspot.com/
+* Rietveld Development: http://code.google.com/p/rietveld/
+* This script: http://bitbucket.org/techtonik/python-review/
 * Discussions: http://groups.google.com/group/codereview-discuss/
-* PyPI Code:   http://bitbucket.org/techtonik/python-review/
 """,
     license='Apache 2.0',
     classifiers=[
