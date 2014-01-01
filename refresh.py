@@ -3,14 +3,29 @@
 This script copies latest upload.py to review.py and refreshes
 version in setup.py to upload `review` package to PyPI.
 """
-from __future__ import with_statement
 
 import shutil
 import os,sys
 
+import os
+import sys
 
-UPLOAD_PY_PATH = "../upload.py"
+# --- bootstrap locally ---
+__dir__ = os.path.abspath(os.path.dirname(__file__))
+
+import subprocess
+
+def run(command):
+    process = subprocess.Popen(command, shell=True)
+    process.communicate()
+# /-- locally ---
+
+
+ROOT = __dir__
+RIETROOT = ROOT + '/rietveld'
+UPLOAD_PY_PATH = RIETROOT + '/upload.py'
 REPO_VIEW = "http://code.google.com/p/rietveld/source/list?path=/upload.py&r="
+
 
 def get_hg_path_revision(path):
     """return latest modification revision of a path inside hg
@@ -47,10 +62,13 @@ def history2rst(history):
     return history
 
 
-if not os.path.exists(UPLOAD_PY_PATH):
-  sys.exit("error: upload.py is not found in parent dir")
+if not os.path.exists(RIETROOT):
+    run('hg clone https://code.google.com/p/rietveld')
 
-print "copying ../upload.py to review.py"
+if not os.path.exists(UPLOAD_PY_PATH):
+  sys.exit("error: upload.py is not found in configured dir")
+
+print "copying upload.py to review.py"
 shutil.copyfile(UPLOAD_PY_PATH, "review.py")
 
 print "updating version and history in setup.py"
