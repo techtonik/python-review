@@ -36,7 +36,7 @@ def get_hg_path_revision(path):
     from subprocess import Popen, PIPE
     try:
         hgprocess = Popen(
-            'hg log -l 1 --template "{node|short} {rev}" --cwd "%s" "%s"'
+            'hg log -M -l 1 --template "{node|short} {rev}" --cwd "%s" "%s"'
                 % (os.path.dirname(path) or '.', os.path.basename(path)),
             shell=True, stdout=PIPE, stderr=PIPE)
         output = hgprocess.communicate()
