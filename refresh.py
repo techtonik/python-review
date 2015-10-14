@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 """
-This script copies latest upload.py to review.py and refreshes
-version in setup.py to upload `review` package to PyPI.
+This script was used to copy latest upload.py to review.py and
+refresh version in setup.py to upload `review` package to PyPI.
+
+After migration of Rietveld to GitHub, it doesn't work anymore.
 """
 
 import shutil
@@ -67,7 +69,9 @@ def history2rst(history):
     history += "\n"
     return history
 
+# with the move to GitHub, this is now disfunctional
 
+"""
 if not os.path.exists(RIETROOT):
     run('hg clone https://code.google.com/p/rietveld')
 
@@ -107,4 +111,6 @@ with open("setup.py","wb") as fw:
             fw.write(line)
     if not foundver:
         print "warning: can't find version string in setup.py"
+
 print "done."
+"""
