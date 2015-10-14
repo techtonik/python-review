@@ -31,8 +31,8 @@ Changes:
 
  - Rietveld moved to GitHub, syncing to a0a624f
 
-* Rietveld Home Page:   http://codereview.appspot.com/
-* Rietveld Development: http://code.google.com/p/rietveld/
+* Rietveld Home Page:   https://codereview.appspot.com/
+* Rietveld Development: https://github.com/rietveld-codereview/rietveld
 * This script: http://bitbucket.org/techtonik/python-review/
 * Discussions: http://groups.google.com/group/codereview-discuss/
 """,
